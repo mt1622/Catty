@@ -37,8 +37,8 @@ final class ChangeBrightnessByNBrickTests: AbstractBrickTest {
         brick = ChangeBrightnessByNBrick()
         script = WhenScript()
         object = SpriteObject()
-        project = ProjectManager.shared.createProject(name: "a", projectId: "1")
-        object.scene = project.scene
+        project = ProjectManager.createProject(name: "a", projectId: "1")
+        object.scene = (project.scenes[0] as! Scene)
         spriteNode = CBSpriteNode.init(spriteObject: object)
         object.spriteNode = spriteNode
         object.scene.project = project

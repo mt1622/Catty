@@ -26,14 +26,10 @@ import XCTest
 
 final class LookTest: XCTestCase {
 
-    var project: Project!
-    var scene: Scene!
-
-    override func setUp() {
-        project = Project()
-        scene = Scene(name: "testScene")
-
-        project.scene = scene
+    func testPathForScene() {
+        let project = Project()
+        let scene = Scene(name: "testScene")
+        project.scenes[0] = scene
         scene.project = project
     }
 
@@ -45,6 +41,11 @@ final class LookTest: XCTestCase {
     }
 
     func testIsEqual() {
+        let project = Project()
+        let scene = Scene(name: "testScene")
+        project.scenes[0] = scene
+        scene.project = project
+
         let look = Look(name: "testLook", filePath: "testLookFile")
         let equalLook = Look(name: "testLook", filePath: "testLookFile")
 
@@ -64,9 +65,9 @@ final class LookTest: XCTestCase {
 
     func testInitWithPath() {
         let object = SpriteObject()
-        object.scene = scene
-
-        let spriteNode = CBSpriteNode(spriteObject: object)
+        let project = ProjectManager.createProject(name: "a", projectId: "1")
+        object.scene = (project.scenes[0] as! Scene)
+        let spriteNode = CBSpriteNode.init(spriteObject: object)
         object.spriteNode = spriteNode
 
         let bundle = Bundle(for: type(of: self))
@@ -82,9 +83,9 @@ final class LookTest: XCTestCase {
 
     func testInitWithName() {
         let object = SpriteObject()
-        object.scene = scene
-
-        let spriteNode = CBSpriteNode(spriteObject: object)
+        let project = ProjectManager.createProject(name: "a", projectId: "1")
+        object.scene = (project.scenes[0] as! Scene)
+        let spriteNode = CBSpriteNode.init(spriteObject: object)
         object.spriteNode = spriteNode
 
         let bundle = Bundle(for: type(of: self))

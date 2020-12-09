@@ -35,8 +35,8 @@ final class ClearGraphicEffectBrickTests: AbstractBrickTest {
     override func setUp() {
         super.setUp()
         object = SpriteObject()
-        project = ProjectManager.shared.createProject(name: "a", projectId: "1")
-        object.scene = project.scene
+        project = ProjectManager.createProject(name: "a", projectId: "1")
+        object.scene = (project.scenes[0] as! Scene)
         spriteNode = CBSpriteNode.init(spriteObject: object)
         object.spriteNode = spriteNode
         self.stage.addChild(spriteNode)

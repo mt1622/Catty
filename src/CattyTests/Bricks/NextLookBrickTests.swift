@@ -30,6 +30,12 @@ final class NextLookBrickTests: AbstractBrickTest {
     var lookB: Look!
     var lookC: Look!
     var image: UIImage!
+    func testNextLookBrick() {
+        let object = SpriteObject()
+        let project = ProjectManager.createProject(name: "a", projectId: "1")
+        object.scene = (project.scenes[0] as! Scene)
+        let spriteNode = CBSpriteNode(spriteObject: object)
+        object.spriteNode = spriteNode
 
     var scene: Scene!
     var spriteNode: CBSpriteNode!

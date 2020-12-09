@@ -39,7 +39,7 @@ final class UserDataContainerTest: XCTestCase {
 
         let scene = Scene(name: "testScene")
 
-        self.project.scene = scene
+        self.project.scenes[0] = scene
 
         self.objectA = SpriteObject()
         self.objectA.scene = scene
@@ -51,10 +51,10 @@ final class UserDataContainerTest: XCTestCase {
         self.objectB.scene = scene
         self.objectB.scene.project = self.project
 
-        self.project.scene.add(object: objectA)
-        self.project.scene.add(object: objectB)
+        (self.project.scenes[0] as! Scene).add(object: objectA)
+        (self.project.scenes[0] as! Scene).add(object: objectB)
 
-        self.project.scene = objectA.scene
+        self.project.scenes[0] = objectA.scene!
     }
 
     func testAddObjectVariable() {
@@ -359,7 +359,14 @@ final class UserDataContainerTest: XCTestCase {
         container.add(list)
         container.add(variable)
 
-        let copyContainer = container.mutableCopy(with: CBMutableCopyContext()) as! UserDataContainer
+        let copyContainer = container.mutableCopy() as! UserDataContainer
+        let copyProject = Project()
+        copyProject.scenes[0] = Scene()
+        (copyProject.scenes[0] as! Scene).add(object: objectA)
+        (copyProject.scenes[0] as! Scene).add(object: objectB)
+        copyProject.userData = copyContainer
+
+        XCTAssertTrue(container.isEqual(copyContainer))
         XCTAssertFalse(container === copyContainer)
 
         let copiedVariables = copyContainer.variables()
