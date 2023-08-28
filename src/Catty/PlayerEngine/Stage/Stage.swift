@@ -301,7 +301,9 @@ final class Stage: SKScene, StageProtocol {
         DispatchQueue.main.async {
             self.removeAllChildren() // remove all CBSpriteNodes from Scene
         }
-        frontend.project?.removeReferences() // remove all references in project hierarchy
+        CBScene.objects().forEach {
+            $0.removeReferences()
+        }
         formulaManager.stop()
         logger.info("All SpriteObjects and Scripts have been removed from Scene!")
         soundEngine.stop()
