@@ -27,6 +27,10 @@ import XCTest
 
 final class FormulaEditorViewControllerTests: XCTestCase {
     var controller: FormulaEditorViewController!
+    var project: Project!
+    var spriteObject: SpriteObject!
+    var script: Script!
+    var scene: Scene!
 
     override func setUp() {
         super.setUp()

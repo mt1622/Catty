@@ -31,11 +31,7 @@ final class LookTest: XCTestCase {
         let scene = Scene(name: "testScene")
         project.scenes[0] = scene
         scene.project = project
-    }
-
-    func testPathForScene() {
         let look = Look(name: "testLook", filePath: "testLookFile")
-
         let expectedPath = project.projectPath() + "testScene/images/testLookFile"
         XCTAssertEqual(expectedPath, look.path(for: scene))
     }
@@ -65,7 +61,7 @@ final class LookTest: XCTestCase {
 
     func testInitWithPath() {
         let object = SpriteObject()
-        let project = ProjectManager.createProject(name: "a", projectId: "1")
+        let project = ProjectManager.shared.createProject(name: "a", projectId: "1")
         object.scene = (project.scenes[0] as! Scene)
         let spriteNode = CBSpriteNode.init(spriteObject: object)
         object.spriteNode = spriteNode
@@ -83,7 +79,7 @@ final class LookTest: XCTestCase {
 
     func testInitWithName() {
         let object = SpriteObject()
-        let project = ProjectManager.createProject(name: "a", projectId: "1")
+        let project = ProjectManager.shared.createProject(name: "a", projectId: "1")
         object.scene = (project.scenes[0] as! Scene)
         let spriteNode = CBSpriteNode.init(spriteObject: object)
         object.spriteNode = spriteNode
