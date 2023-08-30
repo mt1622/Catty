@@ -54,11 +54,5 @@
 - (void)backspace:(id)sender;
 - (NSString*)interpretFormula:(Formula*)formula forSpriteObject:(SpriteObject*)spriteObject;
 - (void)setParseErrorCursorAndSelection;
-- (BOOL)changeBrickCellFormulaData:(BrickCellFormulaData*)brickCellData andForce:(BOOL)forceChange;
-
 - (void)handleInput;
-- (BOOL)isVariableUsed:(UserVariable*)variable;
-- (BOOL)isListUsed:(id<UserDataProtocol>)list;
-
-
 @end
