@@ -393,9 +393,9 @@ class XMLParserTests0993: XMLAbstractTest {
     func testJoinThreeFunction() {
         let project = self.getProjectForXML(xmlFile: "Functions_0993")
 
-        XCTAssertEqual(4, project.scene.objects().count, "Invalid object list")
+        XCTAssertEqual(4, (project.scenes[0] as! Scene).objects().count, "Invalid object list")
 
-        let object = project.scene.object(at: 2)!
+        let object = (project.scenes[0] as! Scene).object(at: 2)!
         XCTAssertEqual(1, object.scriptList.count, "Invalid script list")
 
         let script = object.scriptList.object(at: 0) as! Script

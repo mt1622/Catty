@@ -174,7 +174,7 @@
     }
 
     @objc func removeObjects(_ project: Project, objects: [SpriteObject]) {
-        let scene = project.scene
+        guard let scene = project.scenes[0] as? Scene else {return}
         for object in objects where scene.objects().contains(object) {
             scene.removeObject(object)
         }

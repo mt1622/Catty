@@ -407,7 +407,7 @@ class XMLParserTests0992: XMLAbstractTest {
 
     func testSetTempoToBrick() {
         let project = self.getProjectForXML(xmlFile: "ValidProjectAllBricks0992")
-        let setTempoToBrick = (project.scene.object(at: 1)!.scriptList.object(at: 0) as! Script).brickList.object(at: 5) as! Brick
+        let setTempoToBrick = ((project.scenes[0] as! Scene).object(at: 1)!.scriptList.object(at: 0) as! Script).brickList.object(at: 5) as! Brick
 
         XCTAssertTrue(setTempoToBrick.isKind(of: SetTempoToBrick.self), "Invalid brick type")
     }
